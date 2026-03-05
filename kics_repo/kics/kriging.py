@@ -24,7 +24,8 @@ def _sample_penalty_ighm(ighm: IGHM, sample_cell: str, params: KrigingParams, mo
         Uses zoom integers encoded in suitability keys. The chosen zoom is the
         key with max suitability weight; lambda_star is max zoom available.
 
-    mode='suitability'
+    mode='suitability' 
+        (Legacy)
         Uses the max suitability *value* (in [0,1]) and computes
         delta^(1 - max_suit_value).
     """
