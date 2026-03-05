@@ -100,13 +100,13 @@ def kriging_prediction_variance(
     penalty_mode: PenaltyMode = "zoom",
     use_range_cutoff: bool = True,
 ) -> float:
-    """Compute kriging-based prediction variance proxy for one cell.
+    """Compute kriging-based prediction variance for one cell.
 
     The implementation matches the project code used to generate paper results:
     - Only samples within `params.range_` are used when `use_range_cutoff=True`.
     - Variance is computed as sum_i w_i * gamma(h_{i,target}) * penalty(sample_i).
 
-    If no samples are within range, a large sentinel value is returned.
+    If no samples are within range, a large variance is returned.
     """
     params.validate()
 
@@ -133,7 +133,7 @@ def kriging_variance_surface(
     penalty_mode: PenaltyMode = "zoom",
     use_range_cutoff: bool = True,
 ) -> List[float]:
-    """Return variance values for all cells in `ighm` in cell-id order."""
+    """Return kriging variance values for all cells in `ighm` in cell-id order."""
     return [
         kriging_prediction_variance(
             ighm,
