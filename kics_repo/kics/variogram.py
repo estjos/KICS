@@ -18,21 +18,6 @@ def spherical_semivariogram(h: float, params: KrigingParams) -> float:
     return params.nugget + params.sill
 
 
-def covariance_from_semivariogram(h: float, params: KrigingParams, sill_cov: float = 1.0) -> float:
-    """A simple covariance proxy used by the legacy code.
-
-    The original implementation uses `1 - gamma(h)` as an (unnormalized) covariance.
-    That is not a general geostatistical identity, but we keep it for backwards
-    compatibility with the paper's computational artifact.
-
-    Parameters
-    ----------
-    sill_cov
-        The constant used for covariance at h=0 before subtracting gamma(h).
-    """
-    return sill_cov - spherical_semivariogram(h, params)
-
-
 def bisection_find_h_for_semivariogram(target_gamma: float, params: KrigingParams, tol: float = 1e-6) -> float:
     """Invert the spherical semivariogram on [0, range_].
 
