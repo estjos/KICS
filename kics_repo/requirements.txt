@@ -1,0 +1,8 @@
+numpy>=1.23
+pandas>=2.0
+scikit-learn>=1.2
+sympy>=1.11
+pytest>=7.0
+# Solver:
+# Install Gurobi + gurobipy separately if needed:
+# gurobipy>=10.0

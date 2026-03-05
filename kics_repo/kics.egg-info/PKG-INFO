@@ -1,0 +1,87 @@
+Metadata-Version: 2.4
+Name: kics
+Version: 0.1.0
+Summary: Reproducible artifact for Kriging-informed coverage sampling
+Author: Esther Jose
+License-Expression: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.23
+Requires-Dist: pandas>=2.0
+Requires-Dist: scikit-learn>=1.2
+Requires-Dist: sympy>=1.11
+Provides-Extra: gurobi
+Requires-Dist: gurobipy>=10.0; extra == "gurobi"
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Dynamic: license-file
+
+# Kriging-informed coverage sampling (KICS) — reproducible code
+
+This repo is the reproducible research artifact for the paper:
+
+**Kriging-informed coverage sampling: An Integer Program Approach to Optimizing Spatial Sampling**
+
+It contains:
+- Kriging-variance evaluation used to score a sampling plan (CIC objective)
+- Small-instance exact enumeration baselines
+- The SK (Kriging-informed coverage sampling) integer-program surrogate solved with **Gurobi**
+- Scripts to reproduce the computational experiments / case-study pipelines
+
+## Installation
+
+### 1) Create an environment
+
+Conda (recommended):
+
+```bash
+conda create -n kics python=3.11 -y
+conda activate kics
+pip install -r requirements.txt
+```
+
+### 2) Install & license Gurobi
+
+You need:
+- a Gurobi installation
+- the `gurobipy` Python package
+- a working license (academic licenses are free for academics)
+
+Verify:
+
+```bash
+python -c "import gurobipy as gp; print(gp.gurobi.version())"
+```
+
+## Quick start
+
+### Solve SK on the included IGHM example
+
+```bash
+python scripts/run_ighm_example.py --data data/ighm_1.json --k 5 --radius 3.0
+```
+
+If you don’t know the radius yet, run:
+
+```bash
+python scripts/run_ighm_example.py --data data/ighm_1.json --k 5 --auto-radius
+```
+
+(That uses the variogram + CIC threshold to back out an effective radius.)
+
+## Reproducibility / testing
+
+Run unit tests:
+
+```bash
+pytest -q
+```
+
+Gurobi-dependent tests are automatically skipped if `gurobipy` is not importable.
+
+To explicitly sanity-check your Gurobi setup and SK solve, run:
+
+```bash
+python scripts/self_test_gurobi.py
+```

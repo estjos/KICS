@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Kriging-informed coverage sampling (KICS) — reproducible code"
+authors:
+  - family-names: Jose
+    given-names: Esther
+date-released: 2026-03-03
