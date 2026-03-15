@@ -2,7 +2,7 @@
 
 This repository is the reproducible research artifact for the paper:
 
-**Kriging-informed coverage sampling: An Integer Program Approach to Optimizing Spatial Sampling**
+**Kriging-informed coverage sampling: An Integer Programming Approach to Optimizing Information Collection**
 
 It contains:
 - the **SK** surrogate (a maximal-coverage-style IP) solved with Gurobi
